@@ -3,25 +3,25 @@
 #define CONTAINER_H
 using namespace std;
 template<typename T>
-//интерфейс
+//РёРЅС‚РµСЂС„РµР№СЃ
 class Container{
 public:
-    // Виртуальный деструктор
+    // Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РґРµСЃС‚СЂСѓРєС‚РѕСЂ
     virtual ~Container(){};
-    // Вывод
+    // Р’С‹РІРѕРґ
     virtual void print() const= 0;
 
-    // Вставка элемента
+    // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р°
     virtual void insert(const T& value) = 0;
 
-    // Удаление элемента
+    // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
     virtual void remove(const T& value) = 0;
 
-    // Проверка наличия элемента
+    // РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЌР»РµРјРµРЅС‚Р°
     virtual bool exists(const T& value) const = 0;
 };
 
-//exeption для обработки попыток взаимодействия (разыменования/инкремента) c nullptr
+//exeption РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РїРѕРїС‹С‚РѕРє РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ (СЂР°Р·С‹РјРµРЅРѕРІР°РЅРёСЏ/РёРЅРєСЂРµРјРµРЅС‚Р°) c nullptr
 class IncorrectIndexException: public std::runtime_error
 {
 public:
@@ -34,7 +34,7 @@ class AvlTreeIterator;
 template<typename TYPE>
 class AvlTree;
 
-// Отдельный элемент дерева
+// РћС‚РґРµР»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РґРµСЂРµРІР°
 template <typename T>
 class node {
     friend class AvlTree<T>;
@@ -44,54 +44,54 @@ class node {
 
 private:
     int height;
-    T key;         // Значение
+    T key;         // Р—РЅР°С‡РµРЅРёРµ
     node* left;
     node* right;
-    node* next; // Указатель на следующий элемент для итератора
+    node* next; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ РґР»СЏ РёС‚РµСЂР°С‚РѕСЂР°
 public:
 
     node(const T& key);
 };
 
+
 /*
- * Реализация итератора
+ * Р РµР°Р»РёР·Р°С†РёСЏ РёС‚РµСЂР°С‚РѕСЂР°
  */
 template<typename T>
 class AvlTreeIterator {
 public:
-    // Вид итератора
-    // (что конкретно мы намерены реализовать)
+    // Р’РёРґ РёС‚РµСЂР°С‚РѕСЂР°
+    // (С‡С‚Рѕ РєРѕРЅРєСЂРµС‚РЅРѕ РјС‹ РЅР°РјРµСЂРµРЅС‹ СЂРµР°Р»РёР·РѕРІР°С‚СЊ)
     using iterator_category = std::forward_iterator_tag;
 
-    // Типы значения, указателя на значение, референса на значение
+    // РўРёРїС‹ Р·РЅР°С‡РµРЅРёСЏ, СѓРєР°Р·Р°С‚РµР»СЏ РЅР° Р·РЅР°С‡РµРЅРёРµ, СЂРµС„РµСЂРµРЅСЃР° РЅР° Р·РЅР°С‡РµРЅРёРµ
     using value_type = T;
     using pointer = T*;
     using reference = T&;
 
-    // Тип вычитания двух итераторов
+    // РўРёРї РІС‹С‡РёС‚Р°РЅРёСЏ РґРІСѓС… РёС‚РµСЂР°С‚РѕСЂРѕРІ
     using difference_type = std::ptrdiff_t;
 
-    // Конструкторы
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
     AvlTreeIterator();
     AvlTreeIterator(node<T>* el);
 
-    // Разыменование, получение значения
-    // TODO: обработка *list.end() и аналогов
+     // Р Р°Р·С‹РјРµРЅРѕРІР°РЅРёРµ, РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
     reference operator*() const;
-
-    // Инкременты итератора
-    // (логически -- переход к следующему значению)
+    
+    // РРЅРєСЂРµРјРµРЅС‚С‹ РёС‚РµСЂР°С‚РѕСЂР°
+    // (Р»РѕРіРёС‡РµСЃРєРё -- РїРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ Р·РЅР°С‡РµРЅРёСЋ)
 
     AvlTreeIterator& operator++();
     AvlTreeIterator operator++(int);
 
-    // Сравнение *итераторов*
+    // Г‘Г°Г ГўГ­ГҐГ­ГЁГҐ *ГЁГІГҐГ°Г ГІГ®Г°Г®Гў*
 
     bool operator==(const AvlTreeIterator& it) const;
     bool operator!=(const AvlTreeIterator& it) const;
 
 private:
-    // Указатель на текущий элемент
+    // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚
     node<T>* p;
 };
 
@@ -105,13 +105,13 @@ private:
     int height(node<T>* p);
     int bfactor(node<T>* p);
     void fixheight(node<T>* p);
-    node<T>* rotateright(node<T>* p); // правый поворот вокруг p
-    node<T>* rotateleft(node<T>* q); // левый поворот вокруг q
-    node<T>* balance(node<T>* p); // балансировка узла p
-    node<T>* insertprivate(node<T>* p, const T& k); // вставка ключа k в дерево с корнем p
-    node<T>* findmin(node<T>* p) const; // поиск узла с минимальным ключом в дереве p
-    node<T>* removemin(node<T>* p); // удаление узла с минимальным ключом из дерева p
-    node<T>* removeprivate(node<T>* p, const T& k); // удаление ключа k из дерева p
+    node<T>* rotateright(node<T>* p); // РїСЂР°РІС‹Р№ РїРѕРІРѕСЂРѕС‚ РІРѕРєСЂСѓРі p
+    node<T>* rotateleft(node<T>* q); // Р»РµРІС‹Р№ РїРѕРІРѕСЂРѕС‚ РІРѕРєСЂСѓРі q
+    node<T>* balance(node<T>* p);  //Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєР° СѓР·Р»Р° p
+    node<T>* insertprivate(node<T>* p, const T& k); // РІСЃС‚Р°РІРєР° РєР»СЋС‡Р° k РІ РґРµСЂРµРІРѕ СЃ РєРѕСЂРЅРµРј p
+    node<T>* findmin(node<T>* p) const; // РїРѕРёСЃРє СѓР·Р»Р° СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєР»СЋС‡РѕРј РІ РґРµСЂРµРІРµ p
+    node<T>* removemin(node<T>* p);   // СѓРґР°Р»РµРЅРёРµ СѓР·Р»Р° СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєР»СЋС‡РѕРј РёР· РґРµСЂРµРІР° p
+    node<T>* removeprivate(node<T>* p, const T& k); // СѓРґР°Р»РµРЅРёРµ РєР»СЋС‡Р° k РёР· РґРµСЂРµРІР° p
     void printPrivate(node<T> *p) const;
     void copy_construct_private(node<T>* p);
     void what_next(node<T>* p);
@@ -132,13 +132,14 @@ public:
     using iterator = AvlTreeIterator<int>;
     using const_iterator = AvlTreeIterator<const int>;
 
-    // Контейнер должен уметь отдавать служебные итераторы:
-    // - на первый элемент;
+
+    // РљРѕРЅС‚РµР№РЅРµСЂ РґРѕР»Р¶РµРЅ СѓРјРµС‚СЊ РѕС‚РґР°РІР°С‚СЊ СЃР»СѓР¶РµР±РЅС‹Рµ РёС‚РµСЂР°С‚РѕСЂС‹:
+    // - РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚;
     iterator begin() const;
-    // - на позицию "после последнего элемента".
+    // - РЅР° РїРѕР·РёС†РёСЋ "РїРѕСЃР»Рµ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°".
     iterator end() const;
 
-    // А теперь ещё и аналогичные const-овые итераторы
+    // Рђ С‚РµРїРµСЂСЊ РµС‰С‘ Рё Р°РЅР°Р»РѕРіРёС‡РЅС‹Рµ const-РѕРІС‹Рµ РёС‚РµСЂР°С‚РѕСЂС‹
     const_iterator cbegin() const;
     const_iterator cend() const;
 };
