@@ -1,6 +1,10 @@
+cmake_minimum_required (VERSION 3.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set (PROJECT Container) 
  
 project (${PROJECT}) 
-add_executable (${PROJECT} container.cpp)
-add_executable (${PROJECT} main.cpp)
+set (SOURCES 
+	     container.cpp
+	     main.cpp)
+
+add_executable (${PROJECT} ${SOURCES})
