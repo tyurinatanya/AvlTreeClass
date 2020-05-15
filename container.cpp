@@ -1,5 +1,3 @@
-#include "container.hpp"
-IncorrectIndexException::IncorrectIndexException(): std::runtime_error("IncorrectIndexException") { }
 
 template <typename T>
 node<T>::node(const T& key) : key(key), left(nullptr), right(nullptr), next(nullptr), height(1) {
