@@ -4,7 +4,6 @@ set (PROJECT Container)
  
 project (${PROJECT}) 
 set (SOURCES 
-	     container.cpp
 	     main.cpp)
 
 add_executable (${PROJECT} ${SOURCES})
