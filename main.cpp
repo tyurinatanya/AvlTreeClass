@@ -6,6 +6,9 @@
 #include <functional>
 #include <stdexcept>
 #include "container.hpp"
+#include "classA.h"
+#include "classB.h"
+
 using namespace std;
 
 // Внимание!
