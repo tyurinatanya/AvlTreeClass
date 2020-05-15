@@ -143,4 +143,5 @@ public:
     const_iterator cbegin() const;
     const_iterator cend() const;
 };
+#include "container.cpp"
 #endif
