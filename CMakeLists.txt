@@ -4,6 +4,6 @@ set (PROJECT Container)
  
 project (${PROJECT}) 
 set (SOURCES 
-	     main.cpp)
+	     main.cpp classA.cpp classB.cpp exception.cpp)
 
 add_executable (${PROJECT} ${SOURCES})
